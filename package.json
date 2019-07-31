@@ -1,14 +1,14 @@
 {
-  "name": "fitshare",
+  "name": "fitshare-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "start:dev": "./node_modules/.bin/nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kevin Han",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.0.0",
