@@ -1,11 +1,12 @@
 {
-  "name": "fitshare-server",
+  "name": "fitshare-web-api",
   "version": "1.0.0",
-  "description": "FitShare's API server",
+  "description": "FitShare's web API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start:dev": "./node_modules/.bin/nodemon server.js"
+    "start:dev": "node_modules/.bin/nodemon server.js",
+    "test": "node_modules/.bin/jest --watch"
   },
   "keywords": [],
   "author": "Kevin Han",
@@ -18,6 +19,8 @@
     "sequelize": "^5.12.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   }
 }
