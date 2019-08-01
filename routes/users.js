@@ -61,10 +61,10 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         // Attempts to delete user in database
-        // Returns 1 if successful and 0 if no user with provided id found
+        // Returns 1 if successful and 0 if there is no instance with given id
         const user = await User.destroy({ where: { id: req.params.id } })
 
-        // Sends status 204 if no user was found
+        // Sends status 204 if no instance was found
         if (user === 0) return res.status(204).json()
 
         res.json({ status: 200, msg: 'User was successfully deleted.' })
