@@ -1,12 +1,22 @@
 require('dotenv').config()
 const express = require('express')
+const session = require('express-session')
 const app = express()
 
 // Express JSON middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Handles CORS headers
+// Express Session middleware
+app.use(
+    session({
+        saveUninitialized: false,
+        resave: false,
+        secret: '1234'
+    })
+)
+
+// CORS headers middleware
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header(

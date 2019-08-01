@@ -17,6 +17,8 @@ router.post('/', async (req, res, next) => {
     try {
         // Creates a new user with given information
         const user = await User.create(req.body)
+        req.session.userId = user.id
+        console.log(req.session.userId)
         res.json(user)
     } catch (err) {
         next(err)
