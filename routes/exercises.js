@@ -6,9 +6,7 @@ const { Op } = require('sequelize')
 const { Exercise } = require('../database')
 
 router.get('/', (req, res, next) => {
-    const queries = { where: {} }
-
-    Exercise.findAll(queries)
+    Exercise.findAll()
         .then(exercises => res.json(exercises))
         .catch(next)
 })
