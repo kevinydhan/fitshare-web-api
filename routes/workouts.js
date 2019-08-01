@@ -25,6 +25,8 @@ router.get('/', (req, res, next) => {
 
 /**
  * POST /v1/workouts
+ *
+ * Creates a new workout instance given the details, userId, and an array of exercise details.
  */
 router.post('/', async (req, res, next) => {
     // Returns 422 if workout has no exercises or exercises array is empty
@@ -55,6 +57,19 @@ router.post('/', async (req, res, next) => {
         )
 
         res.json(workout)
+    } catch (err) {
+        next(err)
+    }
+})
+
+/**
+ * DELETE /v1/workouts
+ */
+router.delete('/:id', async (req, res, next) => {
+    try {
+        await Workout.delete({ where: { id: req.params.id } })
+
+        res.json({ status: 200, msg: 'Successfully deleted workout' })
     } catch (err) {
         next(err)
     }
