@@ -1,10 +1,9 @@
+require('dotenv').config()
+
 const cors = require('cors')
 const express = require('express')
 const app = express()
 
-const authorizeRequest = require('./utils/authorize-request')
-
-app.use(cors())
 // Handles CORS headers
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
@@ -22,15 +21,24 @@ app.use((req, res, next) => {
     next()
 })
 
-// app.use((req, res, next) => {
-//     const methods = ['POST', 'PUT', 'PATCH', 'DELETE']
-//     if (methods.includes(req.method)) {
-//         authorizeRequest(req, res, next)
-//     } else next()
-// })
+// Authorization middleware
+app.use((req, res, next) => {
+    const methods = ['POST', 'PUT', 'PATCH', 'DELETE']
 
-// Express middleware
+    if (
+        (methods.includes(req.method) && !req.headers.authorization) ||
+        (methods.includes(req.method) &&
+            req.headers.authorization !== 'Bearer: ' + process.env.TOKEN)
+    )
+        return res.status(401).json({ status: 401, msg: 'Unauthorized' })
+
+    next()
+})
+
+// Express JSON middleware
 app.use(express.json())
+
+// API routes
 app.use('/v1/exercises', require('./routes/exercises'))
 
 const PORT = process.env.PORT || 3000
