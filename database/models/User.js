@@ -43,7 +43,7 @@ const User = connection.define(
     },
     {
         defaultScope: {
-            attributes: { exclude: ['updatedAt'] }
+            attributes: { exclude: ['updatedAt', 'password'] }
         },
         scopes: { authentication: {} }
     }
