@@ -1,6 +1,27 @@
+const Exercise = require('./models/Exercise')
+const Workout = require('./models/Workout')
+const WorkoutExercise = require('./models/WorkoutExercise')
+const User = require('./models/User')
+
 const connection = require('./connection')
-connection.sync()
+
+// Workouts and exercises have a many-to-many relationship. They are joined through the WorkoutExercise table.
+Workout.hasMany(WorkoutExercise)
+WorkoutExercise.belongsTo(Workout)
+
+Exercise.hasMany(WorkoutExercise)
+WorkoutExercise.belongsTo(Exercise)
+
+// Users have a one-to-many relationship with workouts.
+User.hasMany(Workout)
+Workout.belongsTo(User)
+
+// Syncs database
+connection.sync({ force: true })
 
 module.exports = {
-    Exercise: require('./models/Exercise')
+    Exercise,
+    Workout,
+    WorkoutExercise,
+    User
 }

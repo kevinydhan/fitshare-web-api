@@ -12,36 +12,14 @@ const Workout = connection.define(
         name: {
             type: Sequelize.STRING,
             allowNull: false,
-            notEmpty: true,
-            unique: {
-                args: true,
-                msg: 'There is already an exercise with this name.'
-            }
+            notEmpty: true
         },
         slug: {
             type: Sequelize.STRING
         },
-        equipment: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            notEmpty: true
-        },
-        targetMuscles: {
-            type: Sequelize.ARRAY(Sequelize.STRING),
-            allowNull: false
-        },
-        instructions: {
-            type: Sequelize.ARRAY(Sequelize.TEXT)
-        },
-        images: {
-            type: Sequelize.JSON
-        },
-        external: {
-            type: Sequelize.JSON
-        },
-
-        level: Sequelize.STRING,
-        rating: Sequelize.DOUBLE
+        forkedFrom: {
+            type: Sequelize.STRING
+        }
     },
     {
         defaultScope: {
@@ -49,3 +27,9 @@ const Workout = connection.define(
         }
     }
 )
+
+Workout.addHook('beforeCreate', (workout, options) => {
+    workout.slug = workout.name.replace(/[\W_]+/g, '-').toLowerCase()
+})
+
+module.exports = Workout

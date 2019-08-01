@@ -1,11 +1,14 @@
 const express = require('express')
 const router = express.Router()
+const { Op } = require('sequelize')
 
 // Sequelize database models
 const { Exercise } = require('../database')
 
 router.get('/', (req, res, next) => {
-    Exercise.findAll()
+    const queries = { where: {} }
+
+    Exercise.findAll(queries)
         .then(exercises => res.json(exercises))
         .catch(next)
 })
