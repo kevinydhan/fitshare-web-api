@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
+const jwt = require('jsonwebtoken')
 const app = express()
 
 // Express JSON middleware
