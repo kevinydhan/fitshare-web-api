@@ -54,4 +54,8 @@ User.addHook('beforeSave', async (user, options) => {
     user.password = hash
 })
 
+User.prototype.authenticate = function(password) {
+    return bcrypt.compare(password, this.password)
+}
+
 module.exports = User
