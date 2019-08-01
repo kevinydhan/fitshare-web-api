@@ -1,5 +1,5 @@
 const connection = require('./connection')
-connection.sync({ force: true })
+connection.sync()
 
 module.exports = {
     Exercise: require('./models/Exercise')

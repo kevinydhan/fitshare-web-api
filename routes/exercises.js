@@ -3,7 +3,6 @@ const router = express.Router()
 
 // Sequelize database models
 const { Exercise } = require('../database')
-const authorizeRequest = require('../utils/authorize-request')
 
 router.get('/', (req, res, next) => {
     Exercise.findAll()
