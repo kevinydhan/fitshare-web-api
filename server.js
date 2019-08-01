@@ -1,8 +1,10 @@
+const cors = require('cors')
 const express = require('express')
 const app = express()
 
 const authorizeRequest = require('./utils/authorize-request')
 
+app.use(cors())
 // Handles CORS headers
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
