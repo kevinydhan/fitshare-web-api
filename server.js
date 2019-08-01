@@ -52,6 +52,7 @@ app.use((req, res, next) => {
 app.use('/v1/exercises', require('./routes/exercises'))
 app.use('/v1/workouts', require('./routes/workouts'))
 app.use('/v1/users', require('./routes/users'))
+app.use('/v1/auth', require('./routes/auth'))
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
