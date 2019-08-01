@@ -7,7 +7,7 @@ const { Workout, WorkoutExercise, Exercise } = require('../database')
 /**
  * GET /v1/workouts
  *
- * Returns all workouts with array of exercise objects under
+ * Retrieves all workouts with array of exercise objects under
  * `"workoutExercises"` key.
  */
 router.get('/', (req, res, next) => {

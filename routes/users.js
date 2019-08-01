@@ -4,6 +4,11 @@ const router = express.Router()
 // Sequelize database models
 const { User } = require('../database')
 
+/**
+ * GET /v1/users
+ *
+ * Retrieves all users.
+ */
 router.get('/', async (req, res, next) => {
     try {
         const users = await User.findAll()
@@ -13,18 +18,27 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+/**
+ * POST /v1/users
+ *
+ * Creates a new user.
+ */
 router.post('/', async (req, res, next) => {
     try {
         // Creates a new user with given information
         const user = await User.create(req.body)
         req.session.userId = user.id
-        console.log(req.session.userId)
         res.json(user)
     } catch (err) {
         next(err)
     }
 })
 
+/**
+ * PUT /v1/users/:id
+ *
+ * Updates a user instance with the given information.
+ */
 router.put('/:id', async (req, res, next) => {
     try {
         // Finds user in database with provided id
@@ -39,6 +53,11 @@ router.put('/:id', async (req, res, next) => {
     }
 })
 
+/**
+ * DELETE /v1/users/:id
+ *
+ * Deletes a user with the given id.
+ */
 router.delete('/:id', async (req, res, next) => {
     try {
         // Attempts to delete user in database
