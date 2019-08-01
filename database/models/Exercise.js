@@ -51,7 +51,7 @@ const Exercise = connection.define(
 )
 
 Exercise.addHook('beforeCreate', (exercise, options) => {
-    exercise.slug = exercise.name.replace(/[\W_]+/g, '-')
+    exercise.slug = exercise.name.replace(/[\W_]+/g, '-').toLowerCase()
 })
 
 module.exports = Exercise
