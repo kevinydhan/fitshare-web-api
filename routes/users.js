@@ -15,6 +15,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
+        // Creates a new user with given information
         const user = await User.create(req.body)
         res.json(user)
     } catch (err) {
@@ -24,8 +25,12 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
+        // Finds user in database with provided id
         const user = await User.findByPk(req.params.id)
+
+        // Updates the user with provided information from req.body
         const updatedUser = await user.update(req.body)
+
         res.json(updatedUser)
     } catch (err) {
         next(err)
@@ -34,7 +39,7 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        // Attempts to delete user in database.
+        // Attempts to delete user in database
         // Returns 1 if successful and 0 if no user with provided id found
         const user = await User.destroy({ where: { id: req.params.id } })
 
