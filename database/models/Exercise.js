@@ -50,4 +50,8 @@ const Exercise = connection.define(
     }
 )
 
+Exercise.addHook('beforeCreate', (exercise, options) => {
+    exercise.slug = exercise.name.replace(/[\W_]+/g, '-')
+})
+
 module.exports = Exercise
