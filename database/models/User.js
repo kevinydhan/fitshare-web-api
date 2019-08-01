@@ -29,6 +29,11 @@ const User = connection.define(
                 msg: 'There is already an exercise with this name.'
             }
         },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            notEmpty: true
+        },
         gender: {
             type: Sequelize.STRING,
             allowNull: false,
