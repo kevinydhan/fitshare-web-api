@@ -28,7 +28,7 @@ app.use((req, res, next) => {
     if (
         (methods.includes(req.method) && !req.headers.authorization) ||
         (methods.includes(req.method) &&
-            req.headers.authorization !== 'Bearer: ' + process.env.TOKEN)
+            req.headers.authorization !== 'Bearer: ' + process.env.ACCESS_TOKEN)
     )
         return res.status(401).json({ status: 401, msg: 'Unauthorized' })
 
