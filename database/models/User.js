@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt')
 const connection = require('../connection')
 const { Sequelize } = connection
 
@@ -43,8 +44,14 @@ const User = connection.define(
     {
         defaultScope: {
             attributes: { exclude: ['updatedAt'] }
-        }
+        },
+        scopes: { authentication: {} }
     }
 )
+
+User.addHook('beforeSave', async (user, options) => {
+    const hash = await bcrypt.hash(user.password, 5)
+    user.password = hash
+})
 
 module.exports = User
