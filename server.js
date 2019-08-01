@@ -39,7 +39,7 @@ app.use(express.json())
 // API routes
 app.use('/v1/exercises', require('./routes/exercises'))
 app.use('/v1/workouts', require('./routes/workouts'))
-app.use('v1/users', require('./routes/users'))
+app.use('/v1/users', require('./routes/users'))
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))

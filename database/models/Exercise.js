@@ -4,11 +4,11 @@ const { Sequelize } = connection
 const Exercise = connection.define(
     'exercise',
     {
-        id: {
-            type: Sequelize.UUID,
-            defaultValue: Sequelize.UUIDV4,
-            primaryKey: true
-        },
+        // id: {
+        //     type: Sequelize.UUID,
+        //     defaultValue: Sequelize.UUIDV4,
+        //     primaryKey: true
+        // },
         name: {
             type: Sequelize.STRING,
             allowNull: false,
