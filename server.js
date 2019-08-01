@@ -22,12 +22,12 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use((req, res, next) => {
-    const methods = ['POST', 'PUT', 'PATCH', 'DELETE']
-    if (methods.includes(req.method)) {
-        authorizeRequest(req, res, next)
-    } else next()
-})
+// app.use((req, res, next) => {
+//     const methods = ['POST', 'PUT', 'PATCH', 'DELETE']
+//     if (methods.includes(req.method)) {
+//         authorizeRequest(req, res, next)
+//     } else next()
+// })
 
 // Express middleware
 app.use(express.json())
