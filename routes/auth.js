@@ -7,7 +7,8 @@ const { User } = require('../database')
 /**
  * GET /v1/auth
  *
- * Sends user's information if user's session is active. Otherwise, an empty object literal will be sent.
+ * Sends user's information if user's session is active.
+ * Otherwise, an empty object literal will be sent.
  */
 router.get('/', async (req, res, next) => {
     try {

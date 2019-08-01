@@ -7,7 +7,8 @@ const { Workout, WorkoutExercise, Exercise } = require('../database')
 /**
  * GET /v1/workouts
  *
- * Returns all workouts with array of exercise objects under `"workoutExercises"` key.
+ * Returns all workouts with array of exercise objects under
+ * `"workoutExercises"` key.
  */
 router.get('/', (req, res, next) => {
     Workout.findAll({
@@ -26,7 +27,8 @@ router.get('/', (req, res, next) => {
 /**
  * POST /v1/workouts
  *
- * Creates a new workout instance given the details, userId, and an array of exercise details.
+ * Creates a new workout instance given the details, userId,
+ * and an array of exercise details.
  */
 router.post('/', async (req, res, next) => {
     // Returns 422 if workout has no exercises or exercises array is empty
@@ -64,6 +66,9 @@ router.post('/', async (req, res, next) => {
 
 /**
  * DELETE /v1/workouts
+ *
+ * Deletes a workout. The delete request cascades and will delete
+ * all entries in WorkoutExercise with the given workout id.
  */
 router.delete('/:id', async (req, res, next) => {
     try {
