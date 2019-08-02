@@ -37,7 +37,13 @@ app.use((req, res, next) => {
 
 // Authorization middleware
 app.use((req, res, next) => {
-    const allowedRoutes = ['POST /v1/users']
+    const allowedRoutes = [
+        'GET /',
+        'GET /v1/exercises',
+        'POST /v1/users',
+        'GET /v1/auth',
+        'POST /v1/auth/login'
+    ]
     const requestedRoute = req.method + ' ' + req.path
 
     // If requested route is allowed, request is able to bypass JWT token verification
@@ -45,7 +51,7 @@ app.use((req, res, next) => {
 
     // If there is no 'Authorization' header, return status 401
     if (!req.headers.authorization)
-        return res.status(401).json({ msg: 'Unauthorized user' })
+        return res.status(401).json({ status: 401, msg: 'Unauthorized user' })
     //
     // Proceed to extract access token and verify it
     else {
@@ -56,7 +62,10 @@ app.use((req, res, next) => {
             return res.status(401).json({ msg: 'Unauthorized user' })
 
         jwt.verify(bearerToken[1], process.env.CLIENT_ID, (err, data) => {
-            if (err) return res.status(401).json({ msg: 'Unauthorized user' })
+            if (err)
+                return res
+                    .status(401)
+                    .json({ status: 401, msg: 'Unauthorized user' })
             else next()
         })
     }
