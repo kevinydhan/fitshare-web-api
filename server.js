@@ -5,7 +5,7 @@ const session = require('express-session')
 const jwt = require('jsonwebtoken')
 const app = express()
 
-// Express JSON middleware
+// Express middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
@@ -48,6 +48,8 @@ app.use((req, res, next) => {
     ]
     const requestedRoute = req.method + ' ' + req.path
 
+    if (req.path.includes('/docs')) return next()
+
     // If requested route is allowed, request is able to bypass JWT token verification
     if (allowedRoutes.includes(requestedRoute)) return next()
 
@@ -82,6 +84,11 @@ app.use('/v1/auth', require('./routes/auth'))
 app.get('/', (req, res, next) =>
     res.sendFile(path.join(__dirname, 'index.html'))
 )
+
+app.get('/docs/:endpoint/:method', (req, res, next) => {
+    const { endpoint, method } = req.params
+    res.sendFile(path.join(__dirname, 'docs', endpoint, method))
+})
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
