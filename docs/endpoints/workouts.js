@@ -22,7 +22,7 @@ module.exports = {
         {
             method: 'DELETE /:id',
             route: '/docs/workouts/delete',
-            displayTitle: 'DELETE /v1/workouts',
+            displayTitle: 'DELETE /v1/workouts/:id',
             documentation: []
         }
     ]

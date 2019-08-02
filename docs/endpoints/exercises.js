@@ -81,7 +81,7 @@ module.exports = {
                         {
                             header: '401',
                             description:
-                                'The server rejected the request because it had received an invalid access token.'
+                                'The server rejected the request because it received an invalid access token.'
                         },
                         { header: '500', description: 'Internal server error!' }
                     ]
@@ -100,7 +100,52 @@ module.exports = {
             method: 'PUT /:id',
             route: '/docs/exercises/put',
             displayTitle: 'PUT /v1/exercises/:id',
-            documentation: []
+            documentation: [
+                {
+                    title: 'Request',
+                    sections: [
+                        {
+                            header: 'Options',
+                            description:
+                                'Below is an example request to this endpoint:',
+                            codeBlockPath:
+                                './code-blocks/exercises/put/options.ejs'
+                        },
+                        {
+                            header: 'Body',
+                            description: `Below is an example request body for this endpoint:`,
+                            codeBlockPath:
+                                './code-blocks/exercises/put/body.ejs'
+                        }
+                    ]
+                },
+                {
+                    title: 'Response',
+                    sections: [
+                        {
+                            header: '201',
+                            description:
+                                'After successfully creating a new exercise instance, the following information will be returned:',
+                            codeBlockPath:
+                                './code-blocks/exercises/put/response.ejs'
+                        },
+                        {
+                            header: '401',
+                            description:
+                                'The server rejected the request because it received an invalid access token.'
+                        },
+                        { header: '500', description: 'Internal server error!' }
+                    ]
+                },
+                {
+                    title: 'Restrictions',
+                    sections: [
+                        {
+                            description: `Only administrators can access this endpoint.`
+                        }
+                    ]
+                }
+            ]
         },
         {
             method: 'DELETE /:id',

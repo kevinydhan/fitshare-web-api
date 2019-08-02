@@ -1,12 +1,12 @@
 <div class="uk-position-relative uk-margin-medium">
 
 <pre><code class="hljs javascript" style="background: none;"><span class="hljs-function">fetch(<span class="hljs-string">'https://fitshare-web-api.herokuapp.com/v1/exercises'</span>, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer: ${accessToken}'
     },
-    body: JSON.stringify(newUser)
+    body: JSON.stringify(updatedUserInformation)
 })
     .then(res => res.json())
     .then(res => <span class="hljs-comment">/* do something with response */</span>)</code></pre>
