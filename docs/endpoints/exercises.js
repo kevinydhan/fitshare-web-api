@@ -70,7 +70,7 @@ module.exports = [
                     {
                         header: '201',
                         description:
-                            'After successfully creating a new exercise instance, the following information will be returned:',
+                            'After successfully creating a new exercise instance, the following information is returned:',
                         codeBlockPath:
                             './code-blocks/exercises/post/response201.ejs'
                     },
@@ -79,8 +79,7 @@ module.exports = [
                         description:
                             'The server rejected the request because it received an invalid access token.',
                         codeBlockPath: './code-blocks/response401.ejs'
-                    },
-                    { header: '500', description: 'Internal server error!' }
+                    }
                 ]
             },
             {
@@ -118,19 +117,23 @@ module.exports = [
                 title: 'Response',
                 sections: [
                     {
-                        header: '201',
+                        header: '200',
                         description:
-                            'After successfully creating a new exercise instance, the following information will be returned:',
+                            'After successfully updating the instance with the given id, the following information is returned:',
                         codeBlockPath:
                             './code-blocks/exercises/put/response.ejs'
+                    },
+                    {
+                        header: '204',
+                        description:
+                            'The server accepted the request, but no instance with the given id was found.'
                     },
                     {
                         header: '401',
                         description:
                             'The server rejected the request because it received an invalid access token.',
                         codeBlockPath: './code-blocks/response401.ejs'
-                    },
-                    { header: '500', description: 'Internal server error!' }
+                    }
                 ]
             },
             {
@@ -168,19 +171,21 @@ module.exports = [
                 title: 'Response',
                 sections: [
                     {
-                        header: '201',
+                        header: '200',
                         description:
-                            'After successfully creating a new exercise instance, the following information will be returned:',
-                        codeBlockPath:
-                            './code-blocks/exercises/put/response.ejs'
+                            'After successfully deleting the instance with the given id, the following information is returned:'
+                    },
+                    {
+                        header: '204',
+                        description:
+                            'The server accepted the request, but no instance with the given id was found.'
                     },
                     {
                         header: '401',
                         description:
                             'The server rejected the request because it received an invalid access token.',
                         codeBlockPath: './code-blocks/response401.ejs'
-                    },
-                    { header: '500', description: 'Internal server error!' }
+                    }
                 ]
             },
             {
