@@ -12,7 +12,7 @@ module.exports = {
                         {
                             header: 'Options',
                             description:
-                                'Below are example requests to this endpoint:',
+                                'Below is an example request to this endpoint:',
                             codeBlockPath:
                                 './code-blocks/exercises/get/options.ejs'
                         },
@@ -56,13 +56,13 @@ module.exports = {
                         {
                             header: 'Options',
                             description:
-                                'Below are example requests to this endpoint:',
+                                'Below is an example request to this endpoint:',
                             codeBlockPath:
                                 './code-blocks/exercises/post/options.ejs'
                         },
                         {
                             header: 'Body',
-                            description: `This endpoint does not require a request body.`,
+                            description: `Below is an example request body for this endpoint:`,
                             codeBlockPath:
                                 './code-blocks/exercises/post/body.ejs'
                         }
@@ -72,9 +72,16 @@ module.exports = {
                     title: 'Response',
                     sections: [
                         {
-                            header: '200',
+                            header: '201',
                             description:
-                                'Below is an example response from this endpoint:'
+                                'After successfully creating a new exercise instance, the following information will be returned:',
+                            codeBlockPath:
+                                './code-blocks/exercises/post/response.ejs'
+                        },
+                        {
+                            header: '401',
+                            description:
+                                'The server rejected the request because it had received an invalid access token.'
                         },
                         { header: '500', description: 'Internal server error!' }
                     ]
@@ -83,7 +90,7 @@ module.exports = {
                     title: 'Restrictions',
                     sections: [
                         {
-                            description: `There are no restrictions for this endpoint.`
+                            description: `Only administrators can access this endpoint.`
                         }
                     ]
                 }
