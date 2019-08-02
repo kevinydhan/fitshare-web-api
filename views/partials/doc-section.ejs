@@ -17,9 +17,19 @@
         <!-- Renders out the body/description for each tab -->
         <% descriptions.forEach(function(description, i) { %>
             <% if (i == 0) { %>
-                <li class="uk-active"><p><%= description %></p></li>
+                <li class="uk-active">
+                    <p><%= description %></p>
+                    <% if (codeBlocks[i]) { %>
+                        <%- include(codeBlocks[i]) %>
+                    <% } %>
+                </li>
             <% } else { %>
-                <li class=""><p><%= description %></p></li>
+                <li class="">
+                    <p><%= description %></p>
+                    <% if (codeBlocks[i]) { %>
+                        <%- include(codeBlocks[i]) %>
+                    <% } %>
+                </li>
             <% } %>
         <% }) %>
     </ul>

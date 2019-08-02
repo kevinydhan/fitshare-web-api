@@ -93,14 +93,13 @@ app.get('/', (req, res, next) =>
 )
 
 app.get('/docs/*', (req, res, next) => {
-    const documentation = routeMap[req.path] || []
-    const documentationTitle = 'GET /v1/exercises'
+    const { documentation, displayTitle } = routeMap[req.path] || []
 
     res.render('index', {
         path: '/docs',
         sidebarRoutes,
         documentation,
-        documentationTitle
+        displayTitle
     })
 })
 

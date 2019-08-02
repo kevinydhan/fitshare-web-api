@@ -4,6 +4,7 @@ module.exports = {
         {
             method: 'GET',
             route: '/docs/exercises/get',
+            displayTitle: 'GET /v1/exercises',
             documentation: [
                 {
                     title: 'Request',
@@ -11,7 +12,8 @@ module.exports = {
                         {
                             header: 'Options',
                             description:
-                                'Below are example requests to this endpoint:'
+                                'Below are example requests to this endpoint:',
+                            codeBlockPath: './code-blocks/exercises/get.ejs'
                         },
                         {
                             header: 'Body',
@@ -43,16 +45,19 @@ module.exports = {
         {
             method: 'POST',
             route: '/docs/exercises/post',
+            displayTitle: 'POST /v1/exercises',
             documentation: [{ title: 'Request Parameters' }]
         },
         {
             method: 'PUT /:id',
             route: '/docs/exercises/put',
+            displayTitle: 'PUT /v1/exercises/:id',
             documentation: []
         },
         {
             method: 'DELETE /:id',
             route: '/docs/exercises/delete',
+            displayTitle: 'DELETE /v1/exercises/:id',
             documentation: []
         }
     ]
