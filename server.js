@@ -94,8 +94,14 @@ app.get('/', (req, res, next) =>
 
 app.get('/docs/*', (req, res, next) => {
     const documentation = routeMap[req.path] || []
-    console.log(routeMap)
-    res.render('index', { path: '/docs', sidebarRoutes, documentation })
+    const documentationTitle = 'GET /v1/exercises'
+
+    res.render('index', {
+        path: '/docs',
+        sidebarRoutes,
+        documentation,
+        documentationTitle
+    })
 })
 
 const PORT = process.env.PORT || 5000

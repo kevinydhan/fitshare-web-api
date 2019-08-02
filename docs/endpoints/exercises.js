@@ -7,15 +7,36 @@ module.exports = {
             documentation: [
                 {
                     title: 'Request',
-                    sections: [{ header: 'Options' }, { header: 'Body' }]
+                    sections: [
+                        {
+                            header: 'Options',
+                            description:
+                                'Below are example requests to this endpoint:'
+                        },
+                        {
+                            header: 'Body',
+                            description: `This endpoint does not require a request body.`
+                        }
+                    ]
                 },
                 {
                     title: 'Response',
-                    sections: []
+                    sections: [
+                        {
+                            header: '200',
+                            description:
+                                'Below is an example response from this endpoint:'
+                        },
+                        { header: '500', description: 'Internal server error!' }
+                    ]
                 },
                 {
-                    title: 'Restrictions'
-                    // sections: []
+                    title: 'Restrictions',
+                    sections: [
+                        {
+                            description: `There are no restrictions for this endpoint.`
+                        }
+                    ]
                 }
             ]
         },

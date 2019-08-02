@@ -1,3 +1,7 @@
+<h3 class="uk-heading-line uk-text-center" style="margin-bottom: 2em;">
+    <span><%= documentationTitle %></span
+></h3>
+
 <ul uk-accordion="multiple: true">
 
     <!--
@@ -10,36 +14,53 @@
         Source data: docs/data.js, which links docs/endpoints/*.js
     -->
     <% documentation.forEach(function(main) { %>
-        <li class="">
+        <li class="" style="margin-top: 2em;">
             <a class="uk-accordion-title"><%= main.title %></a>
 
             <div class="uk-accordion-content">
 
-                <!-- Check if the secions array is defined to prevent errors -->
-                <% if (typeof main.sections == undefined) { %>
+                <!-- Check if the sections array is defined to prevent errors -->
+                <% if (!main.sections) { %>
                     <em>No description</em>
 
                 <!--
-                    If `main.sections` exists, check if it is an array or not
-                    to prevent errors.
+                    If main.sections exists, check if it is an array and not empty
+                    to prevent errors
                 -->
                 <% } else if (!Array.isArray(main.sections)) { %>
                     <em>No description</em>
 
-                <!-- If the array is empty, return 'No description'. -->
-                <% } else if (main.sections.length === 0) { %>
+                <% } else if (main.sections.length == 0) { %>
                     <em>No description</em>
 
-                <% } else { % >
-                    <!-- <div class="uk-position-relative uk-margin-medium" style="width: 100%;">
-                        <p><%= main.description %></p>
+                <!-- If there is a single section object, display it as is. -->
+                <% } else if (main.sections.length == 1) { %>
+                    <% if (main.sections[0].header) { %>
+                        <dt><%= main.sections[0].header %></dt>
+                    <% } else if (main.sections[0].description) { %>
+                        <dd><%= main.sections[0].description %></dd>
+                    <% } %>
 
-                        <% if (main.codeBlockPath) { %>
-                            <%- include(main.codeBlockPath) %>
-                        <% } %>
-                    </div> -->
+                <!-- If there are more than one section, display it using tabbed sections. -->
+                <% } else { %>
+
+                    <!-- Used to display the tabs -->
+                    <% var tabs = []; %>
+                    <!-- Used to display the description under each tab -->
+                    <% var descriptions = []; %>
+                    <% var codeBlocks = []; %>
+
+                    <% main.sections.forEach(function(section) { %>
+                        <% tabs.push(section.header || 'No header'); %>
+                        <% descriptions.push(section.description || 'No description'); %>
+                        <% codeBlocks.push(section.codeBlockPath || null); %>
+                    <% }); %>
+
+                    <%- include('doc-section', { tabs: tabs, descriptions: descriptions, codeBlocks: codeBlocks }) %>
                 <% } %>
             </div>
         </li>
+
+    <!-- End of documentation.forEach() -->
     <% }); %>
 </ul>

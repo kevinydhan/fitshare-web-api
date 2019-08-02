@@ -1,0 +1,26 @@
+<dl class="uk-description-list uk-description-list-divider">
+
+    <ul uk-tab="swiping: false" class="uk-tab">
+        <!-- Renders out each tab -->
+        <% tabs.forEach(function(tab, i) { %>
+            <% if (i == 0) { %>
+                <li class="uk-active">
+                    <a aria-expanded="false"><%= tab %></a>
+                </li>
+            <% } else { %>
+                <li class=""><a aria-expanded="true"><%= tab %></a></li>
+            <% } %>
+        <% }); %>
+    </ul>
+
+    <ul class="uk-switcher uk-margin">
+        <!-- Renders out the body/description for each tab -->
+        <% descriptions.forEach(function(description, i) { %>
+            <% if (i == 0) { %>
+                <li class="uk-active"><p><%= description %></p></li>
+            <% } else { %>
+                <li class=""><p><%= description %></p></li>
+            <% } %>
+        <% }) %>
+    </ul>
+</dl>
