@@ -8,7 +8,7 @@
 
     <ul class="uk-switcher uk-margin">
         <li class="uk-active">
-<pre><code class="lang-js hljs javascript" style="background: none; border: none;">{
+            <pre><code class="hljs javascript">{
     user: {
         id: 1,
         firstName: "John",
@@ -20,12 +20,35 @@
     accessToken: "your_access_token"
 }
 </code></pre>
+
+            <pre><code class="javascript hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">$initHighlight</span>(<span class="hljs-params">block, cls</span>) </span>{
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">if</span> (cls.search(<span class="hljs-regexp">/\bno\-highlight\b/</span>) != <span class="hljs-number">-1</span>)
+        <span class="hljs-keyword">return</span> process(block, <span class="hljs-literal">true</span>, <span class="hljs-number">0x0F</span>) +
+               <span class="hljs-string">` class="<span class="hljs-subst">${cls}</span>"`</span>;
+    } <span class="hljs-keyword">catch</span> (e) {
+      <span class="hljs-comment">/* handle exception */</span>
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span> / <span class="hljs-number">2</span>; i &lt; classes.length; i++) {
+      <span class="hljs-keyword">if</span> (checkCondition(classes[i]) === <span class="hljs-literal">undefined</span>)
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'undefined'</span>);
+    }
+
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">web-component</span>&gt;</span>{block}<span class="hljs-tag">&lt;/<span class="hljs-name">web-component</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    )
+  }
+
+  <span class="hljs-keyword">export</span>  $initHighlight;
+  </code></pre>
         </li>
         <li class="">
-<pre><code class="lang-js hljs javascript" style="background: none; border: none;">{
-  "user": {
-    "id": 1,
-    "firstName": "John",
+            <pre><code class="hljs json"  style="background: none;">{
+  <span class="hljs-attr">"user"</span>: {
+    "id": <span class="hljs-number">1</span>,
+    "firstName": <span class="hljs-string">"John"</span>,
     "lastName": "Smith",
     "email": "john.smith@gmail.com",
     "gender": "Male",
