@@ -1,0 +1,19 @@
+<ul uk-accordion="multiple: true">
+    <% documentation.forEach(function(section) { %>
+        <li class="">
+            <a class="uk-accordion-title">
+                <%= section.title %>
+            </a>
+
+            <div class="uk-accordion-content">
+                <div>
+                    <p><%= section.description %></p>
+
+                    <% if (section.codeBlockPath) { %>
+                        <%- include(section.codeBlockPath) %>
+                    <% } %>
+                </div>
+            </div>
+        </li>
+    <% }); %>
+</ul>

@@ -8,8 +8,14 @@ const app = express()
 // Express middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+// EJS view engine
 app.use(express.static('views'))
 app.set('view engine', 'ejs')
+
+// Documentation data
+const sidebarRoutes = require('./docs/sidebar-routes')
+const routeMap = require('./docs/route-map')
 
 // Express Session middleware
 app.use(
@@ -82,12 +88,13 @@ app.use('/v1/workouts', require('./routes/workouts'))
 app.use('/v1/users', require('./routes/users'))
 app.use('/v1/auth', require('./routes/auth'))
 
-app.get('/', (req, res, next) => res.render('index'))
+app.get('/', (req, res, next) =>
+    res.render('index', { path: '/', sidebarRoutes })
+)
 
-app.get('/docs/:endpoint/:method', (req, res, next) => {
-    const { endpoint, method } = req.params
-    res.render(endpoint + '-' + method)
-    // res.sendFile(path.join(__dirname, 'docs', endpoint, method))
+app.get('/docs/*', (req, res, next) => {
+    const documentation = routeMap[req.path]
+    res.render('index', { path: '/docs', sidebarRoutes, documentation })
 })
 
 const PORT = process.env.PORT || 5000

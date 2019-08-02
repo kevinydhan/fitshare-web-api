@@ -4,6 +4,21 @@
     <body>
         <%- include partials/navbar.ejs %>
 
-        <div style="display: flex;"><%- include partials/sidebar.ejs %></div>
+        <div style="display: flex; width: 100vw;">
+            <%- include partials/sidebar.ejs %>
+
+            <!-- Main content area -->
+            <div style="margin: 7em 0 0 3em;
+                    padding-right: 1em;
+                    width: 100%;
+                    max-width: 800px;">
+
+                <!-- `path` variable is passed from Express server. -->
+                <% if (path == '/docs') { %>
+                    <%- include('partials/docs') %>
+                <% } %>
+
+            </div>
+        </div>
     </body>
 </html>

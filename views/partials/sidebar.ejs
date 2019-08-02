@@ -1,57 +1,29 @@
 <!-- Sidebar -->
-<div
-    class="uk-width-1-2@s uk-width-2-5@m"
-    style="min-width: 180px;
-           width: 10%;
-           padding: 7em 1em 0;
-           height: 100vh;"
->
+<div class="uk-width-1-2@s uk-width-2-5@m"
+     style="min-width: 180px;
+            width: 10%;
+            padding: 7em 1em 0;
+            height: 100vh;" >
+
     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav="multiple: true">
-        <li class="uk-parent">
-            <a>/v1/exercises</a>
-            <ul class="uk-nav-sub">
-                <li><a href="/docs/exercises/get">GET</a></li>
-                <li><a href="/docs/exercises/post">POST</a></li>
-                <li><a href="/docs/exercises/post">PUT</a></li>
-                <li><a href="/docs/exercises/delete">DELETE</a></li>
-            </ul>
-        </li>
+        <% sidebarRoutes.forEach(function(route) { %>
 
-        <li class="uk-nav-divider"></li>
+            <li class="uk-parent">
+                <a><%= route.endpoint %></a>
 
-        <li class="uk-parent">
-            <a>/v1/workouts</a>
-            <ul class="uk-nav-sub">
-                <li><a href="/docs/workouts/get">GET</a></li>
-                <li><a href="/docs/workouts/post">POST</a></li>
-                <li><a href="/docs/workouts/put">PUT /:id</a></li>
-                <li>
-                    <a href="/docs/workouts/delete">DELETE /:id</a>
-                </li>
-            </ul>
-        </li>
+                <% if (typeof route.actions !== undefined) { %>
+                    <ul class="uk-nav-sub">
+                        <% route.actions.forEach(function(subroute) { %>
+                            <li>
+                                <a href="<%= subroute.route %>">
+                                    <%= subroute.method %>
+                                </a>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } %>
+            </li>
 
-        <li class="uk-nav-divider"></li>
-
-        <li class="uk-parent">
-            <a>/v1/users</a>
-            <ul class="uk-nav-sub">
-                <li><a href="/docs/users/get">GET</a></li>
-                <li><a href="/docs/users/post">POST</a></li>
-                <li><a href="/docs/users/put">PUT /:id</a></li>
-                <li><a href="/docs/users/delete">DELETE /:id</a></li>
-            </ul>
-        </li>
-
-        <li class="uk-nav-divider"></li>
-
-        <li class="uk-parent">
-            <a>/v1/auth</a>
-            <ul class="uk-nav-sub">
-                <li><a href="/docs/auth/get">GET</a></li>
-                <li><a href="/docs/auth/post/login">POST /login</a></li>
-                <li><a href="/docs/auth/post/logout">POST /logout</a></li>
-            </ul>
-        </li>
+        <% }); %>
     </ul>
 </div>
