@@ -1,12 +1,12 @@
 <div class="uk-position-relative uk-margin-medium">
 
-<pre><code class="hljs javascript">fetch('https://fitshare-web-api.herokuapp.com/v1/exercises', {
+<pre><code class="hljs javascript">fetch('https://fitshare-web-api.herokuapp.com/v1/exercises/1', {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer:' + 'your_access_token'
     },
-    body: JSON.stringify(updatedExerciseInformation)
+    body: JSON.stringify(newExercise)
 })
     .then(res => res.json())
     .then(res => /* do something with response */)</code></pre>
