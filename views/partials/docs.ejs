@@ -1,18 +1,44 @@
 <ul uk-accordion="multiple: true">
-    <% documentation.forEach(function(section) { %>
+
+    <!--
+        'documentation' is referring to routeMap[req.path].documentation,
+        which is an array containing documentation sections for the endpoint.
+
+        The variable 'main' is referring to each individual documentation section
+        object.
+
+        Source data: docs/data.js, which links docs/endpoints/*.js
+    -->
+    <% documentation.forEach(function(main) { %>
         <li class="">
-            <a class="uk-accordion-title">
-                <%= section.title %>
-            </a>
+            <a class="uk-accordion-title"><%= main.title %></a>
 
             <div class="uk-accordion-content">
-                <div>
-                    <p><%= section.description %></p>
 
-                    <% if (section.codeBlockPath) { %>
-                        <%- include(section.codeBlockPath) %>
-                    <% } %>
-                </div>
+                <!-- Check if the secions array is defined to prevent errors -->
+                <% if (typeof main.sections == undefined) { %>
+                    <em>No description</em>
+
+                <!--
+                    If `main.sections` exists, check if it is an array or not
+                    to prevent errors.
+                -->
+                <% } else if (!Array.isArray(main.sections)) { %>
+                    <em>No description</em>
+
+                <!-- If the array is empty, return 'No description'. -->
+                <% } else if (main.sections.length === 0) { %>
+                    <em>No description</em>
+
+                <% } else { % >
+                    <!-- <div class="uk-position-relative uk-margin-medium" style="width: 100%;">
+                        <p><%= main.description %></p>
+
+                        <% if (main.codeBlockPath) { %>
+                            <%- include(main.codeBlockPath) %>
+                        <% } %>
+                    </div> -->
+                <% } %>
             </div>
         </li>
     <% }); %>

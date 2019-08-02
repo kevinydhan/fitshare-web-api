@@ -14,7 +14,7 @@ const createRouteMap = arr => {
     /**
      * Create a hash map of each `endpoint.action` object literal.
      * The resulting hash map will use the `endpoint.action.route`
-     * as the key and `endpoint.action.documentation` as the value.
+     * as the key and `endpoint.action.sections` as the value.
      */
     return routes.reduce((acc, curr) => {
         if (curr.route) acc[curr.route] = curr.documentation || []

@@ -14,8 +14,8 @@ app.use(express.static('views'))
 app.set('view engine', 'ejs')
 
 // Documentation data
-const sidebarRoutes = require('./docs/sidebar-routes')
-const routeMap = require('./docs/route-map')
+const sidebarRoutes = require('./docs/sidebar-routes') || []
+const routeMap = require('./docs/route-map') || {}
 
 // Express Session middleware
 app.use(
@@ -93,7 +93,8 @@ app.get('/', (req, res, next) =>
 )
 
 app.get('/docs/*', (req, res, next) => {
-    const documentation = routeMap[req.path]
+    const documentation = routeMap[req.path] || []
+    console.log(routeMap)
     res.render('index', { path: '/docs', sidebarRoutes, documentation })
 })
 
