@@ -1,4 +1,5 @@
 require('dotenv').config()
+const path = require('path')
 const express = require('express')
 const session = require('express-session')
 const jwt = require('jsonwebtoken')
@@ -7,6 +8,7 @@ const app = express()
 // Express JSON middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public'))
 
 // Express Session middleware
 app.use(
@@ -76,6 +78,10 @@ app.use('/v1/exercises', require('./routes/exercises'))
 app.use('/v1/workouts', require('./routes/workouts'))
 app.use('/v1/users', require('./routes/users'))
 app.use('/v1/auth', require('./routes/auth'))
+
+app.get('/', (req, res, next) =>
+    res.sendFile(path.join(__dirname, 'index.html'))
+)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
