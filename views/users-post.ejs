@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include partials/header.ejs %>
+    <body>
+        <%- include partials/navbar.ejs %>
+        <div style="display: flex; width: 100vw;">
+            <%- include partials/sidebar.ejs %>
+
+            <div style="margin: 7em 1em 0 3em; width: 100%; max-width: 800px;">
+                <ul uk-accordion="multiple: true">
+                    <li class="uk-open">
+                        <a class="uk-accordion-title" href="#"
+                            >Request Options</a
+                        >
+                        <div class="uk-accordion-content">
+                            <p>
+                                Below is an example request:
+                            </p>
+                            <%- include
+                            partials/code-blocks/users/post-options.ejs %>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a class="uk-accordion-title" href="#">Request Body</a>
+                        <div class="uk-accordion-content">
+                            <p>Below is an example request body:</p>
+                            <%- include partials/code-blocks/users/post-body.ejs
+                            %>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a class="uk-accordion-title" href="#">Status 200</a>
+                        <div class="uk-accordion-content">
+                            <p>
+                                Duis aute irure dolor in reprehenderit in
+                                voluptate velit esse cillum dolore eu fugiat
+                                nulla pariatur. Excepteur sint occaecat
+                                cupidatat proident.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

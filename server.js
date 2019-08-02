@@ -8,7 +8,8 @@ const app = express()
 // Express middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static('public'))
+app.use(express.static('views'))
+app.set('view engine', 'ejs')
 
 // Express Session middleware
 app.use(
@@ -81,13 +82,12 @@ app.use('/v1/workouts', require('./routes/workouts'))
 app.use('/v1/users', require('./routes/users'))
 app.use('/v1/auth', require('./routes/auth'))
 
-app.get('/', (req, res, next) =>
-    res.sendFile(path.join(__dirname, 'index.html'))
-)
+app.get('/', (req, res, next) => res.render('index'))
 
 app.get('/docs/:endpoint/:method', (req, res, next) => {
     const { endpoint, method } = req.params
-    res.sendFile(path.join(__dirname, 'docs', endpoint, method))
+    res.render(endpoint + '-' + method)
+    // res.sendFile(path.join(__dirname, 'docs', endpoint, method))
 })
 
 const PORT = process.env.PORT || 5000

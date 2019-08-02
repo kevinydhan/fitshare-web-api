@@ -63,7 +63,7 @@ User.addHook('beforeSave', async (user, options) => {
  * Deletes `updatedAt` and `password` fields on newly created User instance.
  * Implemented to standardize the User instance's object literal.
  */
-User.addHook('afterCreate', async (user, options) => {
+User.addHook('afterCreate', (user, options) => {
     delete user.dataValues.password
     delete user.dataValues.updatedAt
 })
