@@ -27,7 +27,7 @@ const User = connection.define(
             isEmail: true,
             unique: {
                 args: true,
-                msg: 'There is already an exercise with this name.'
+                msg: 'There is already an user with this email.'
             }
         },
         password: {
@@ -49,11 +49,28 @@ const User = connection.define(
     }
 )
 
+/**
+ * Stores a bcrypt hash for user's password.
+ */
 User.addHook('beforeSave', async (user, options) => {
     const hash = await bcrypt.hash(user.password, 5)
     user.password = hash
 })
 
+/**
+ * Deletes `updatedAt` and `password` fields on newly created User instance.
+ * Implemented to standardize the User instance's object literal.
+ */
+User.addHook('afterCreate', async (user, options) => {
+    delete user.dataValues.password
+    delete user.dataValues.updatedAt
+})
+
+/**
+ * Authenticates given password with stored password.
+ *
+ * @return {boolean} - If true, the given password is valid
+ */
 User.prototype.authenticate = function(password) {
     return bcrypt.compare(password, this.password)
 }

@@ -37,16 +37,20 @@ app.use((req, res, next) => {
 
 // Authorization middleware
 app.use((req, res, next) => {
-    const methods = ['POST', 'PUT', 'PATCH', 'DELETE']
+    const allowedRoutes = ['POST /v1/users']
 
-    if (
-        (methods.includes(req.method) && !req.headers.authorization) ||
-        (methods.includes(req.method) &&
-            req.headers.authorization !== 'Bearer: ' + process.env.ACCESS_TOKEN)
-    )
-        return res.status(401).json({ status: 401, msg: 'Unauthorized' })
+    const requestedRoute = req.method + ' ' + req.path
+    if (allowedRoutes.includes(requestedRoute)) return next()
 
-    next()
+    if (!req.header.authorization)
+        return res.status(401).json({ msg: 'Unauthorized user' })
+    else {
+        const [bearer, accessToken] = req.header.authorization.split(': ')
+        jwt.verify(accessToken, process.env.CLIENT_ID, (err, data) => {
+            if (err) return res.status(401).json({ msg: 'Unauthorized user' })
+            else next(data)
+        })
+    }
 })
 
 // API routes

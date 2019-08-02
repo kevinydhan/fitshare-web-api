@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const express = require('express')
 const router = express.Router()
 
@@ -24,11 +25,14 @@ router.get('/', async (req, res, next) => {
  * Creates a new user.
  */
 router.post('/', async (req, res, next) => {
+    console.log(process.env.CLIENT_ID)
     try {
         // Creates a new user with given information
         const user = await User.create(req.body)
+
+        const accessToken = jwt.sign(user.get(), process.env.CLIENT_ID)
         req.session.userId = user.id
-        res.json(user)
+        res.json({ user, accessToken })
     } catch (err) {
         next(err)
     }
