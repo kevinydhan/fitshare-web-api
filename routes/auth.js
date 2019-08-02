@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const express = require('express')
 const router = express.Router()
 
@@ -53,9 +54,11 @@ router.post('/login', async (req, res, next) => {
                 msg: 'Incorrect password.'
             })
 
-        // Sets user's id to current session
+        delete user.dataValues.password
+
+        const accessToken = jwt.sign(user.dataValues, process.env.CLIENT_ID)
         req.session.userId = user.id
-        res.json(user)
+        res.json({ user, accessToken })
     } catch (err) {
         next(err)
     }

@@ -17,7 +17,7 @@ User.hasMany(Workout)
 Workout.belongsTo(User)
 
 // Syncs database
-connection.sync()
+connection.sync({ force: true })
 
 module.exports = {
     Exercise,
