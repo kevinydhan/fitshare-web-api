@@ -25,12 +25,16 @@ router.get('/', async (req, res, next) => {
  * Creates a new user.
  */
 router.post('/', async (req, res, next) => {
-    console.log(req.body)
+    if (req.query.secret === process.env.ADMIN_TOKEN) req.body.isAdmin = true
+
     try {
         // Creates a new user with given information
         const user = await User.create(req.body)
 
-        const accessToken = jwt.sign(user.get(), process.env.CLIENT_ID)
+        let secret = process.env.CLIENT_ID
+        if (user.isAdmin) secret += process.env.CLIENT_SECRET
+
+        const accessToken = jwt.sign(user.get(), secret)
         req.session.userId = user.id
         res.json({ user, accessToken })
     } catch (err) {

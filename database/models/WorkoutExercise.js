@@ -4,11 +4,6 @@ const { Sequelize } = connection
 const WorkoutExercise = connection.define(
     'workoutExercise',
     {
-        id: {
-            type: Sequelize.UUID,
-            defaultValue: Sequelize.UUIDV4,
-            primaryKey: true
-        },
         sets: {
             type: Sequelize.INTEGER,
             defaultValue: 1

@@ -17,7 +17,9 @@ User.hasMany(Workout)
 Workout.belongsTo(User)
 
 // Syncs database
-connection.sync()
+const force = process.env.NODE_ENV === 'development'
+console.log(force)
+connection.sync({ force })
 
 module.exports = {
     Exercise,
