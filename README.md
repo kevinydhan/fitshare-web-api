@@ -1,8 +1,10 @@
 # FitShare Web API
 
-This API serves FitShare and FitShare Native.
+Documentation can be found [here](https://fitshare-web-api.herokuapp.com).
 
-This API is built with:
+___
+
+FitShare Web API serves FitShare and FitShare Native. It is built with:
 
 - **Database:** PostgreSQL, Sequelize, bcrypt
 - **Server:** Node.js, Express, Express Session, JSON Web Token, EJS
