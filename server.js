@@ -42,6 +42,8 @@ app.use((req, res, next) => {
     next()
 })
 
+// ==========================================================================================
+// ==========================================================================================
 // Authorization middleware
 app.use((req, res, next) => {
     const allowedRoutes = [
@@ -81,6 +83,8 @@ app.use((req, res, next) => {
     }
 })
 
+// ==========================================================================================
+// ==========================================================================================
 // API routes
 app.use('/v1/exercises', require('./routes/exercises'))
 app.use('/v1/workouts', require('./routes/workouts'))
@@ -103,18 +107,22 @@ app.get('/docs/*', (req, res, next) => {
     })
 })
 
+// ==========================================================================================
+// ==========================================================================================
 // Error handling middlewre
 const sequelizeErrorHandler = require('./utils/errors-sequelize')
-app.use((err, req, res, next) => {
-    console.log(Object.keys(err.errors[0]))
 
+app.use((err, req, res, next) => {
     // Finds whether or not error originated from Sequelize
     const sequelizeError = sequelizeErrorHandler(err)
     if (sequelizeError)
         return res.status(sequelizeError.status).json(sequelizeError)
 
+    // If origin of error cannot be determined, send status 500
     res.status(500).send({ status: 500, msg: 'Internal server error' })
 })
 
+// ==========================================================================================
+// ==========================================================================================
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
