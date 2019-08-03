@@ -18,7 +18,6 @@ Workout.belongsTo(User)
 
 // Syncs database
 const force = process.env.NODE_ENV === 'development'
-console.log(force)
 connection.sync({ force })
 
 module.exports = {

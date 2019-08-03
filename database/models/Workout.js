@@ -1,9 +1,11 @@
 const connection = require('../connection')
 const { Sequelize } = connection
+const { id } = require('./_env.config')
 
 const Workout = connection.define(
     'workout',
     {
+        ...id,
         name: {
             type: Sequelize.STRING,
             allowNull: false,

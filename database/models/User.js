@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt')
 const connection = require('../connection')
 const { Sequelize } = connection
+const { id } = require('./_env.config')
 
 const User = connection.define(
     'user',
     {
+        ...id,
         firstName: {
             type: Sequelize.STRING,
             allowNull: false,
