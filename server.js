@@ -45,6 +45,7 @@ app.use((req, res, next) => {
 // ==========================================================================================
 // ==========================================================================================
 // Authorization middleware
+
 app.use((req, res, next) => {
     const allowedRoutes = [
         'GET /',
@@ -86,6 +87,7 @@ app.use((req, res, next) => {
 // ==========================================================================================
 // ==========================================================================================
 // API routes
+
 app.use('/v1/exercises', require('./routes/exercises'))
 app.use('/v1/workouts', require('./routes/workouts'))
 app.use('/v1/users', require('./routes/users'))
@@ -109,7 +111,8 @@ app.get('/docs/*', (req, res, next) => {
 
 // ==========================================================================================
 // ==========================================================================================
-// Error handling middlewre
+// Error handling middleware
+
 const sequelizeErrorHandler = require('./utils/errors-sequelize')
 
 app.use((err, req, res, next) => {
@@ -124,5 +127,6 @@ app.use((err, req, res, next) => {
 
 // ==========================================================================================
 // ==========================================================================================
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
